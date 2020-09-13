@@ -13,6 +13,11 @@ import { BelongsToMany, Column, Index, Table } from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
 
+/**
+ * <p>An <code>Author</code> is the person that wrote all, or part, of a
+ * <code>Series</code> or <code>Story</code>.  It is linked in many-to-many
+ * relationships by @ManyToMany relationships.</p>
+ */
 @Table({
     modelName: "author",
     tableName: "authors",

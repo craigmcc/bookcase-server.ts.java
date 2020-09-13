@@ -6,6 +6,10 @@ import { Model } from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
 
+/**
+ * <p>Define the standard CRUD operations that every service implementation
+ * should support.</p>
+ */
 // TODO - declare error responses?
 export abstract class AbstractService<M extends Model> {
 

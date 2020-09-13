@@ -11,6 +11,10 @@ import {Column, ForeignKey, Table } from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
 
+/**
+ * <p>A <code>SeriesAuthor</code> represents the many-to-many relationship
+ * between a series and author(s) of that series.</p>
+ */
 @Table({
     modelName: "seriesauthor",
     tableName: "seriesauthors",

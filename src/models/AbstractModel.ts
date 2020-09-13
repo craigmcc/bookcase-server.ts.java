@@ -8,6 +8,10 @@ import {Column, CreatedAt, Model, Table, UpdatedAt}
 
 // Public Classes ------------------------------------------------------------
 
+/**
+ * <p>Define the fields that should be included in every Sequelize Model
+ * implementation that subclasses this abstract base class.</p>
+ */
 @Table({
     timestamps: true,
     version: true
