@@ -31,6 +31,12 @@ app.get("/", (req, res) => {
     res.send("Hello from Bookcase Server!")
 })
 
+// Configure Models ----------------------------------------------------------
+
+// TODO - configure model classes
+
+// Configure Routes ----------------------------------------------------------
+
 // TODO - require("./src/endpoints/FooEndpoints")(app);
 
 // Start Server --------------------------------------------------------------
