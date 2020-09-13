@@ -6,7 +6,7 @@
 
 const bodyParser = require("body-parser")
 const cors = require("cors")
-const express = require("express")
+import express from "express";
 
 // Configuration Parameters --------------------------------------------------
 
@@ -24,7 +24,12 @@ app.use(bodyParser.text({
     limit: "2mb",
     type: "text/csv"
 }))
-// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors(corsOptions))
+
+app.get("/", (req, res) => {
+    res.send("Hello from Bookcase Server!")
+})
 
 // TODO - require("./src/endpoints/FooEndpoints")(app);
 
