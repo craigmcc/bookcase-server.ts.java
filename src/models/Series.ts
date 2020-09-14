@@ -34,7 +34,7 @@ export class Series extends AbstractModel<Series> {
         type: new DataType.STRING,
         unique: true
     })
-    @Index({ name: "ix_serieses_name"})
+    @Index({ name: "ix_series_name"})
     name!: string;
 
     @Column({

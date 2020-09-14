@@ -1,4 +1,4 @@
-// WARNING!!! Trying with sequalize 6.3.5 causes an error during startup:
+// WARNING!!! Trying with sequelize 6.3.5 causes an error during startup:
 //   sequelize-typescript TypeError: Cannot read property 'get QueryInterface' of undefined
 // Temporarily downgraded to 5.22.3 as per advice on Stack Overflow, but yuck.
 
@@ -13,7 +13,7 @@ import { Story } from "../models/Story";
 
 // External Modules ----------------------------------------------------------
 
-import { Model, Sequelize } from "sequelize-typescript";
+import { Sequelize } from "sequelize-typescript";
 
 // Configure Database Interface ----------------------------------------------
 

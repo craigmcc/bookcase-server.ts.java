@@ -22,7 +22,7 @@ export abstract class AbstractModel<Model> extends Model {
         primaryKey: true,
         type: new DataType.BIGINT
     })
-    readonly id!: number;
+    id!: number;
 
     @Column({
         allowNull: false,

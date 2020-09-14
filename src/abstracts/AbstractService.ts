@@ -16,14 +16,14 @@ export abstract class AbstractService<M extends Model> {
     /**
      * <p>Return all models of the specified type.</p>
      */
-    public abstract all(): M[];
+    public abstract all(): Promise<M[]>;
 
     /**
      * <p>Return the model with the specified id.</p>
      *
      * @param id ID of the model to find
      */
-    public abstract find(id:number): M;
+    public abstract find(id: number): Promise<M>;
 
     /**
      * <p>Insert a new model instance, and return it with populated
@@ -31,7 +31,7 @@ export abstract class AbstractService<M extends Model> {
      *
      * @param model Model to be inserted
      */
-    public abstract insert(model:M): M;
+    public abstract insert(model: M): Promise<M>;
 
     /**
      * <p>Remove the model with the specified id, and return the
@@ -39,7 +39,7 @@ export abstract class AbstractService<M extends Model> {
      *
      * @param id ID of the model to remove
      */
-    public abstract remove(id:number): M;
+    public abstract remove(id: number): Promise<M>;
 
     /**
      * <p>Update the model with the specified id and new data,
@@ -48,6 +48,6 @@ export abstract class AbstractService<M extends Model> {
      * @param id ID of the model to update
      * @param model Model containing updated values
      */
-    public abstract update(id:number, model:M): M
+    public abstract update(id: number, model: M): Promise<M>
 
 }
