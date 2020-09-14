@@ -2,8 +2,7 @@
 
 // External Modules ----------------------------------------------------------
 
-import { DataTypes } from "sequelize";
-import {Column, CreatedAt, Model, Table, UpdatedAt}
+import {Column, CreatedAt, DataType, Model, Table, UpdatedAt}
     from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
@@ -19,17 +18,24 @@ import {Column, CreatedAt, Model, Table, UpdatedAt}
 export abstract class AbstractModel<Model> extends Model {
 
     @Column({
+        allowNull: false,
         primaryKey: true,
-        type: new DataTypes.BIGINT,
+        type: new DataType.BIGINT
     })
     readonly id!: number;
 
-//    @Column
+    @Column({
+        allowNull: false,
+        type: new DataType.DATE
+    })
     @CreatedAt
-    readonly published!: DataTypes.DateDataType;
+    readonly published!: Date;
 
-//    @Column
+    @Column({
+        allowNull: false,
+        type: new DataType.DATE
+    })
     @UpdatedAt
-    readonly  updated!: DataTypes.DateDataType;
+    readonly updated!: Date;
 
 }

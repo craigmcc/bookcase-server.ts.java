@@ -1,10 +1,10 @@
 // Internal Modules ----------------------------------------------------------
 
-import { AbstractModel } from "./AbstractModel";
+import { AbstractModel } from "../abstracts/AbstractModel";
+import { AuthorSeries } from "./AuthorSeries";
+import { AuthorStory } from "./AuthorStory";
 import { Series } from "./Series";
-import { SeriesAuthor } from "./SeriesAuthor";
 import { Story } from "./Story";
-import { StoryAuthor } from "./StoryAuthor";
 
 // External Modules ----------------------------------------------------------
 
@@ -19,17 +19,18 @@ import { BelongsToMany, Column, Index, Table } from "sequelize-typescript";
  * relationships by @ManyToMany relationships.</p>
  */
 @Table({
-    modelName: "author",
-    tableName: "authors",
+//    modelName: "author",
+    tableName: "author",
     validate: { } // TODO - class level validations
 })
 export class Author extends AbstractModel<Author> {
 
     @Column({
+        allowNull: false,
         type: new DataTypes.STRING,
         unique: true
     })
-    @Index({ name: "ix_authors_name"})
+    @Index({ name: "ix_author_name"})
     name!: string;
 
     @Column({
@@ -38,10 +39,10 @@ export class Author extends AbstractModel<Author> {
     })
     notes?: string;
 
-    @BelongsToMany(() => Series, () => SeriesAuthor)
+    @BelongsToMany(() => Series, () => AuthorSeries)
     serieses?: Series[];
 
-    @BelongsToMany(() => Story, () => StoryAuthor)
+    @BelongsToMany(() => Story, () => AuthorStory)
     stories?: Story[];
 
 }

@@ -1,15 +1,14 @@
 // Internal Modules ----------------------------------------------------------
 
-import { AbstractModel } from "./AbstractModel";
+import { AbstractModel } from "../abstracts/AbstractModel";
 import { Author } from "./Author";
-import { SeriesAuthor } from "./SeriesAuthor";
+import { AuthorSeries } from "./AuthorSeries";
 import { SeriesStory } from "./SeriesStory";
 import { Story } from "./Story";
 
 // External Modules ----------------------------------------------------------
 
-import { DataTypes } from "sequelize";
-import { BelongsToMany, Column, Index, Table} from "sequelize-typescript";
+import { BelongsToMany, Column, DataType, Index, Table} from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
 
@@ -21,24 +20,25 @@ import { BelongsToMany, Column, Index, Table} from "sequelize-typescript";
  * be part of more than one series).</p>
  */
 @Table({
-    modelName: "series",
-    tableName: "serieses",
+//    modelName: "series",
+    tableName: "series",
     validate: { } // TODO - class level validations
 })
 export class Series extends AbstractModel<Series> {
 
-    @BelongsToMany(() => Author, () => SeriesAuthor)
+    @BelongsToMany(() => Author, () => AuthorSeries)
     authors?: Author[];
 
     @Column({
-        type: new DataTypes.STRING,
+        allowNull: false,
+        type: new DataType.STRING,
         unique: true
     })
-    @Index({ name: "ix_authors_name"})
+    @Index({ name: "ix_serieses_name"})
     name!: string;
 
     @Column({
-        type: new DataTypes.STRING,
+        type: new DataType.STRING,
         validate: { } // TODO - field level validations
     })
     notes?: string;

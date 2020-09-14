@@ -1,13 +1,12 @@
 // Internal Modules ----------------------------------------------------------
 
-import { AbstractModel } from "./AbstractModel";
+import { AbstractModel } from "../abstracts/AbstractModel";
 import { Series } from "./Series";
 import { Story } from "./Story";
 
 // External Modules ----------------------------------------------------------
 
-import { DataTypes } from "sequelize";
-import {Column, ForeignKey, Table } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, Table } from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
 
@@ -18,25 +17,28 @@ import {Column, ForeignKey, Table } from "sequelize-typescript";
  * in the particular series.</p>
  */
 @Table({
-    modelName: "seriesstory",
-    tableName: "seriesstories",
+//    modelName: "seriesstory",
+    tableName: "seriesstory",
     validate: { } // TODO - class level validations
 })
 export class SeriesStory extends AbstractModel<SeriesStory> {
 
     @Column({
-        type: new DataTypes.SMALLINT
+        allowNull: false,
+        type: new DataType.SMALLINT
     })
     ordinal!: number;
 
     @Column({
-        type: new DataTypes.BIGINT
+        allowNull: false,
+        type: new DataType.BIGINT
     })
     @ForeignKey(() => Series)
     seriesId!: number;
 
     @Column({
-        type: new DataTypes.BIGINT
+        allowNull: false,
+        type: new DataType.BIGINT
     })
     @ForeignKey(() => Story)
     storyId!: number;

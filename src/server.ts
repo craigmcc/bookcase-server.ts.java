@@ -1,6 +1,6 @@
 // Internal Modules ----------------------------------------------------------
 
-// const db = requrie("./src/models/index")
+const db = require("./util/Database");
 
 // External Modules ----------------------------------------------------------
 
@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 // Configure Models ----------------------------------------------------------
 
 // TODO - configure model classes
+
 
 // Configure Routes ----------------------------------------------------------
 
