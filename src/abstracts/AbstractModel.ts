@@ -19,10 +19,11 @@ export abstract class AbstractModel<Model> extends Model {
 
     @Column({
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
         type: new DataType.BIGINT
     })
-    id!: number;
+    id?: number;
 
     @Column({
         allowNull: false,

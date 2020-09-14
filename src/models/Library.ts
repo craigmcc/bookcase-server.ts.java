@@ -3,12 +3,11 @@
 import { AbstractModel } from "../abstracts/AbstractModel";
 import { Author } from "./Author";
 import { Series } from "./Series";
-//import { Volume } from "./Volume";
+import { Volume } from "./Volume";
 
 // External Modules ----------------------------------------------------------
 
 import { Column, DataType, HasMany, Table } from "sequelize-typescript";
-import {DataTypes} from "sequelize";
 
 // Public Classes ------------------------------------------------------------
 
@@ -37,7 +36,7 @@ export class Library extends AbstractModel<Library> {
     name!: string;
 
     @Column({
-        type: new DataTypes.STRING,
+        type: new DataType.STRING,
         validate: { } // TODO - field level validations
     })
     notes?: string;
@@ -45,9 +44,19 @@ export class Library extends AbstractModel<Library> {
     @HasMany(() => Series)
     serieses?: Series[];
 
-/*
     @HasMany(() => Volume)
     volumes?: Volume[];
-*/
+
+}
+
+export class LibraryData {
+
+    constructor(name: string, notes: string | null) {
+        this.name = name;
+        this.notes = notes;
+    }
+
+    name: string;
+    notes: string | null;
 
 }

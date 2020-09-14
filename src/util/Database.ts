@@ -74,11 +74,11 @@ sequelize.addModels([
     VolumeStory
 ]);
 
-// console.log("BEFORE: ", sequelize);
-
-//sequelize.sync();
+console.log("Database: sync() in progress");
+sequelize.sync();
+/*
 sequelize.sync({
     force: true
 });
-
-// console.log("AFTER:  ", sequelize);
+*/
+console.log("Database: sync() is complete");

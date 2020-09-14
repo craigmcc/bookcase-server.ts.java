@@ -11,7 +11,7 @@ import { Model } from "sequelize-typescript";
  * should support.</p>
  */
 // TODO - declare error responses?
-export abstract class AbstractService<M extends Model> {
+export abstract class AbstractServices<M extends Model> {
 
     /**
      * <p>Return all models of the specified type.</p>

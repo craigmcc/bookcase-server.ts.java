@@ -1,6 +1,7 @@
 // Internal Modules ----------------------------------------------------------
 
-const database = require("./util/Database");
+import { AuthorRouters } from "./routers/AuthorRouters";
+const Database = require("./util/Database");
 
 // External Modules ----------------------------------------------------------
 
@@ -37,10 +38,10 @@ app.get("/", (req, res) => {
 
 // Configure Routes ----------------------------------------------------------
 
-// TODO - require("./src/endpoints/FooEndpoints")(app);
+app.use("/api/authors", AuthorRouters);
 
 // Start Server --------------------------------------------------------------
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+    console.info(`Server is running on port ${PORT}`)
 })

@@ -1,6 +1,6 @@
 // Internal Modules ----------------------------------------------------------
 
-import { AbstractService } from "../abstracts/AbstractService";
+import { AbstractServices } from "../abstracts/AbstractServices";
 import { Author } from "../models/Author";
 import { sequelize } from "../util/Database";
 import { BadRequest, NotFound } from "../util/HttpErrors";
@@ -23,21 +23,23 @@ import {FindOptions, ValidationError} from "sequelize";
 /**
  * <p>Service methods for Author model objects.</p>
  */
-export class AuthorServices extends AbstractService<Author> {
+class AuthorServices extends AbstractServices<Author> {
 
     // Standard CRUD Methods -------------------------------------------------
 
     public async all(): Promise<Author[]> {
+//        console.info("AuthorServices.all() BEGIN");
         let options: FindOptions = {
-            order: [ [ "name", "ASC" ] ]
+            order: [ [ "lastName", "ASC" ], [ "firstName", "ASC" ] ]
         }
         return Author.findAll(options);
     }
 
-    public async find(id: number): Promise<Author> {
-        let result: Author | null = await Author.findByPk(id);
+    public async find(authorId: number): Promise<Author> {
+        console.info(`AuthorServices.find(${authorId}) BEGIN`);
+        let result: Author | null = await Author.findByPk(authorId);
         if (!result) {
-            throw new NotFound(`id: Missing Author ${id}`);
+            throw new NotFound(`id: Missing Author ${authorId}`);
         }
         return result;
     }
@@ -110,3 +112,5 @@ export class AuthorServices extends AbstractService<Author> {
     // Model Specific Methods ------------------------------------------------
 
 }
+
+export default new AuthorServices();

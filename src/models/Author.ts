@@ -65,3 +65,20 @@ export class Author extends AbstractModel<Author> {
     stories?: Story[];
 
 }
+
+export class AuthorData {
+
+    constructor(firstName: string, lastName: string, libraryId: number,
+                notes: string | null) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.libraryId = libraryId;
+        this.notes = notes;
+    }
+
+    firstName: string;
+    lastName: string;
+    libraryId: number;
+    notes: string | null;
+
+}
