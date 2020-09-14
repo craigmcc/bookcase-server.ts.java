@@ -1,8 +1,8 @@
 // Internal Modules ----------------------------------------------------------
 
 import { AbstractModel } from "../abstracts/AbstractModel";
-import { Author } from "./Author";
 import { Story } from "./Story";
+import { Volume } from "./Volume";
 
 // External Modules ----------------------------------------------------------
 
@@ -11,22 +11,17 @@ import {Column, DataType, ForeignKey, Table } from "sequelize-typescript";
 // Public Classes ------------------------------------------------------------
 
 /**
- * A <code>AuthorStory</code> represents the many-to-many relationship between
- * an author and a story.</p>
+ * A <code>VolumeStory</code> represents the many-to-many relationship between
+ * an volume and a story.</p>
+ *
+ * <p>Why would this ever happen in real life?  Because you might purchase
+ * a standalone volume, and also an anthology that includes the same story.</p>
  */
 @Table({
-    tableName: "authorstory",
+    tableName: "volumestory",
     validate: { } // TODO - class level validations
 })
-export class AuthorStory extends AbstractModel<AuthorStory> {
-
-    @Column({
-        allowNull: false,
-        field: "authorid",
-        type: new DataType.BIGINT
-    })
-    @ForeignKey(() => Author)
-    authorId!: number;
+export class VolumeStory extends AbstractModel<VolumeStory> {
 
     @Column({
         allowNull: false,
@@ -35,5 +30,13 @@ export class AuthorStory extends AbstractModel<AuthorStory> {
     })
     @ForeignKey(() => Story)
     storyId!: number;
+
+    @Column({
+        allowNull: false,
+        field: "volumeid",
+        type: new DataType.BIGINT
+    })
+    @ForeignKey(() => Volume)
+    volumeId!: number;
 
 }

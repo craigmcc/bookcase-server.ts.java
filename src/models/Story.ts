@@ -24,7 +24,6 @@ import { BelongsToMany, Column, DataType, Table } from "sequelize-typescript";
  * by the series.</p>
  */
 @Table({
-//    modelName: "story",
     tableName: "story",
     validate: { } // TODO - class level validations
 })

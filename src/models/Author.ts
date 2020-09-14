@@ -3,13 +3,13 @@
 import { AbstractModel } from "../abstracts/AbstractModel";
 import { AuthorSeries } from "./AuthorSeries";
 import { AuthorStory } from "./AuthorStory";
+import { Library } from "./Library";
 import { Series } from "./Series";
 import { Story } from "./Story";
 
 // External Modules ----------------------------------------------------------
 
-import { DataTypes } from "sequelize";
-import { BelongsToMany, Column, Index, Table } from "sequelize-typescript";
+import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Table} from "sequelize-typescript";
 
 // Public Classes ------------------------------------------------------------
 
@@ -19,7 +19,6 @@ import { BelongsToMany, Column, Index, Table } from "sequelize-typescript";
  * relationships by @ManyToMany relationships.</p>
  */
 @Table({
-//    modelName: "author",
     tableName: "author",
     validate: { } // TODO - class level validations
 })
@@ -27,14 +26,34 @@ export class Author extends AbstractModel<Author> {
 
     @Column({
         allowNull: false,
-        type: new DataTypes.STRING,
-        unique: true
+        field: "firstname",
+        type: new DataType.STRING,
+        unique: "uniqueAuthorNameWithinLibrary"
     })
-    @Index({ name: "ix_author_name"})
-    name!: string;
+    firstName!: string;
 
     @Column({
-        type: new DataTypes.STRING,
+        allowNull: false,
+        field: "lastname",
+        type: new DataType.STRING,
+        unique: "uniqueAuthorNameWithinLibrary"
+    })
+    lastName!: string;
+
+    @BelongsTo(() => Library)
+    library?: Library;
+
+    @Column({
+        allowNull: false,
+        field: "libraryid",
+        type: new DataType.BIGINT,
+        unique: "uniqueAuthorNameWithinLibrary"
+    })
+    @ForeignKey(() => Library)
+    libraryId!: number;
+
+    @Column({
+        type: new DataType.STRING,
         validate: { } // TODO - field level validations
     })
     notes?: string;

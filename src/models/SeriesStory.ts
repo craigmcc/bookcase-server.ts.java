@@ -17,7 +17,6 @@ import { Column, DataType, ForeignKey, Table } from "sequelize-typescript";
  * in the particular series.</p>
  */
 @Table({
-//    modelName: "seriesstory",
     tableName: "seriesstory",
     validate: { } // TODO - class level validations
 })
@@ -31,6 +30,7 @@ export class SeriesStory extends AbstractModel<SeriesStory> {
 
     @Column({
         allowNull: false,
+        field: "seriesid",
         type: new DataType.BIGINT
     })
     @ForeignKey(() => Series)
@@ -38,6 +38,7 @@ export class SeriesStory extends AbstractModel<SeriesStory> {
 
     @Column({
         allowNull: false,
+        field: "storyid",
         type: new DataType.BIGINT
     })
     @ForeignKey(() => Story)

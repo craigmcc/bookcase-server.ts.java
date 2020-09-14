@@ -2,10 +2,10 @@
 
 import { AbstractModel } from "../abstracts/AbstractModel";
 import { Author } from "./Author";
-import { AuthorSeries } from "./AuthorSeries";
+import { AuthorVolume } from "./AuthorVolume";
 import { Library } from "./Library";
-import { SeriesStory } from "./SeriesStory";
 import { Story } from "./Story";
+import { VolumeStory } from "./VolumeStory";
 
 // External Modules ----------------------------------------------------------
 
@@ -14,20 +14,29 @@ import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Table} from "seq
 // Public Classes ------------------------------------------------------------
 
 /**
- * <p>A <code>Series</code> is a set of <code>Story</code> objects representing
- * stories out of the same fictional universe.  Such stories are ordered by an
- * <code>ordinal</code> field on the <code>SeriesStory</code> model that defines
- * the many-to-many relationship (although not common, an individual story might
- * be part of more than one series).</p>
+ * <p>A <code>Volume</code> is a physical or electronic manifestation of a
+ * book, which might be written by one or more authors, and contain one or
+ * more stories (possibly part of a series by the same authors, or else
+ * a compilation into an anthology).</p>
+ *
+ * <p>In the real world, a volume might have a globally unique ISBN number
+ * that can be used to cross reference this volume in other resources, such
+ * as Google Books or Amazon's shopping system.</p>
  */
 @Table({
-    tableName: "series",
+    tableName: "volume",
     validate: { } // TODO - class level validations
 })
-export class Series extends AbstractModel<Series> {
+export class Volume extends AbstractModel<Volume> {
 
-    @BelongsToMany(() => Author, () => AuthorSeries)
+    @BelongsToMany(() => Author, () => AuthorVolume)
     authors?: Author[];
+
+    @Column({
+        type: new DataType.STRING,
+        validate: { } // TODO - field level validations
+    })
+    isbn?: string;
 
     @BelongsTo(() => Library)
     library?: Library;
@@ -36,7 +45,8 @@ export class Series extends AbstractModel<Series> {
         allowNull: false,
         field: "libraryid",
         type: new DataType.BIGINT,
-        unique: "uniqueSeriesNameWithinLibrary"
+        unique: "uniqueVolumeNameWithinLibrary",
+        validate: { } // TODO - field level validations
     })
     @ForeignKey(() => Library)
     libraryId!: number;
@@ -44,7 +54,7 @@ export class Series extends AbstractModel<Series> {
     @Column({
         allowNull: false,
         type: new DataType.STRING,
-        unique: "uniqueSeriesNameWithinLibrary"
+        unique: "uniqueVolumeNameWithinLibrary"
     })
     name!: string;
 
@@ -54,7 +64,7 @@ export class Series extends AbstractModel<Series> {
     })
     notes?: string;
 
-    @BelongsToMany(() => Story, () => SeriesStory)
+    @BelongsToMany(() => Story, () => VolumeStory)
     stories?: Story[];
 
 }

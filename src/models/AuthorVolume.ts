@@ -2,7 +2,7 @@
 
 import { AbstractModel } from "../abstracts/AbstractModel";
 import { Author } from "./Author";
-import { Story } from "./Story";
+import { Volume } from "./Volume";
 
 // External Modules ----------------------------------------------------------
 
@@ -11,14 +11,15 @@ import {Column, DataType, ForeignKey, Table } from "sequelize-typescript";
 // Public Classes ------------------------------------------------------------
 
 /**
- * A <code>AuthorStory</code> represents the many-to-many relationship between
- * an author and a story.</p>
+ * <p>A <code>AuthorVolume</code> represents the many-to-many relationship
+ * between an <code>Author</code> and a <code>Volume</code> that is
+ * written, or co-written, by that author.</p>
  */
 @Table({
-    tableName: "authorstory",
+    tableName: "authorvolume",
     validate: { } // TODO - class level validations
 })
-export class AuthorStory extends AbstractModel<AuthorStory> {
+export class AuthorVolume extends AbstractModel<AuthorVolume> {
 
     @Column({
         allowNull: false,
@@ -30,10 +31,10 @@ export class AuthorStory extends AbstractModel<AuthorStory> {
 
     @Column({
         allowNull: false,
-        field: "storyid",
+        field: "volumeid",
         type: new DataType.BIGINT
     })
-    @ForeignKey(() => Story)
-    storyId!: number;
+    @ForeignKey(() => Volume)
+    volumeId!: number;
 
 }

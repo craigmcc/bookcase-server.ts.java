@@ -15,7 +15,6 @@ import {Column, DataType, ForeignKey, Table } from "sequelize-typescript";
  * between a series and author(s) of that series.</p>
  */
 @Table({
-//    modelName: "authorseries",
     tableName: "authorseries",
     validate: { } // TODO - class level validations
 })
@@ -23,6 +22,7 @@ export class AuthorSeries extends AbstractModel<AuthorSeries> {
 
     @Column({
         allowNull: false,
+        field: "authorid",
         type: new DataType.BIGINT
     })
     @ForeignKey(() => Author)
@@ -30,6 +30,7 @@ export class AuthorSeries extends AbstractModel<AuthorSeries> {
 
     @Column({
         allowNull: false,
+        field: "seriesid",
         type: new DataType.BIGINT
     })
     @ForeignKey(() => Series)

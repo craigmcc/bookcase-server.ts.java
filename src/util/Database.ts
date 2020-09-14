@@ -7,9 +7,13 @@
 import { Author } from "../models/Author";
 import { AuthorSeries } from "../models/AuthorSeries";
 import { AuthorStory } from "../models/AuthorStory";
+import { AuthorVolume } from "../models/AuthorVolume";
+import { Library } from "../models/Library";
 import { Series } from "../models/Series";
 import { SeriesStory } from "../models/SeriesStory";
 import { Story } from "../models/Story";
+import { Volume } from "../models/Volume";
+import { VolumeStory } from "../models/VolumeStory";
 
 // External Modules ----------------------------------------------------------
 
@@ -30,17 +34,6 @@ const dbConfig = {
         idle: 10000
     }
 }
-
-/*
-const models: string[] = [
-    "../models/Author.ts",
-    "../models/AuthorSeries.ts",
-    "../models/AuthorStory.ts",
-    "../models/Series.ts",
-    "../models/SeriesStory.ts",
-    "../models/Story.ts"
-];
-*/
 
 const nodeEnv = process.env.NODE_ENV || "production";
 
@@ -72,9 +65,13 @@ sequelize.addModels([
     Author,
     AuthorSeries,
     AuthorStory,
+    AuthorVolume,
+    Library,
     Series,
     SeriesStory,
-    Story
+    Story,
+    Volume,
+    VolumeStory
 ]);
 
 // console.log("BEFORE: ", sequelize);
